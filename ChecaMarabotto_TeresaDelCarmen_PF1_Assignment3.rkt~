@@ -1,0 +1,52 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-reader.ss" "lang")((modname ChecaMarabotto_TeresaDelCarmen_PF1_Assignment3) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+; AUTHOR: TERESA DEL CARMEN CHECA MARABOTTO
+
+; ASSIGNMENT 3
+
+;; ----------------------------------------------------------------------------------------------------------
+;; ----------------------------------------------------------------------------------------------------------
+
+;1. Design a function median that takes three numbers and returns their median—
+;that is, the number that lies in the middle once the three numbers are ordered
+;from smallest to largest. For example, the median of 4, 2, 8 is 4.
+
+;; Data types
+; a Triplet is a structure (make-triplet Number Number Number)
+; interpretation: a set of three numbers 
+(define-struct triplet [n1 n2 n3])
+
+;; Examples of data
+(define T1 (make-triplet 4 2 8))
+(define T2 (make-triplet 2 8 4))
+(define T3 (make-triplet 3 2 1))
+
+;; Input/output
+; median: Number Number Number -> Number
+; calculates the median of three numbers (n1, n2 and n3)
+
+;; header:
+; (define (median n1 n2 n3) 0))
+
+(check-expect (median T1) 4)
+(check-expect (median T2) 4)
+(check-expect (median T3) 2)
+
+;; Template:
+; (define (median (make-triplet n1 n2 n3))
+;          (... n1 ... n2... n3))
+
+;; Code
+(define (median t)
+   (max (min (triplet-n1 t) (triplet-n2 t) )
+        (min (triplet-n1 t) (triplet-n3 t))
+        (min (triplet-n2 t) (triplet-n3 t))
+  )
+  )
+
+;; ----------------------------------------------------------------------------------------------------------
+;2. Design a function 3-max that takes three numbers and returns their maximum—
+;that is, the largest number among them. (You cannot use Racket’s built-in
+;function max to implement 3-max.)
+
